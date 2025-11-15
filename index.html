@@ -1,0 +1,389 @@
+<!doctype html>
+<html lang="tr">
+
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mese Lojistik — Güvenilir Lojistik Çözümleri</title>
+<style>
+:root {
+    --navy: #0b2540;
+    --accent: #c62828;
+    --muted: #6b7280;
+    --bg: #ffffff;
+    --card: #f7f9fb;
+    --radius: 10px;
+    --max: 1200px;
+    font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, Arial;
+}
+
+body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--navy);
+    line-height: 1.55;
+}
+
+/* container */
+.container {
+    max-width: var(--max);
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* header */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 14px 0;
+}
+.logo img { height: 64px; }
+
+/* nav links */
+nav a {
+    margin-left: 20px;
+    text-decoration: none;
+    font-weight: 600;
+    color: var(--navy);
+    opacity: 0.85;
+}
+nav a:hover { opacity: 1; }
+
+/* language switcher */
+.lang-switcher {
+    position: relative;
+    display: inline-block;
+    margin-left: 20px;
+    font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, Arial;
+}
+
+.lang-btn {
+    background: var(--bg);
+    color: var(--navy);
+    font-weight: 600;
+    border: 1px solid var(--muted);
+    border-radius: 4px;
+    padding: 5px 10px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.lang-list {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: var(--bg);
+    border: 1px solid var(--muted);
+    border-radius: 6px;
+    padding: 0;
+    margin: 4px 0 0 0;
+    list-style: none;
+    min-width: 160px;
+    z-index: 1000;
+}
+
+.lang-list li {
+    padding: 6px 12px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.lang-list li img {
+    width: 20px;
+    height: 14px;
+    object-fit: cover;
+}
+
+.lang-list li:hover {
+    background: var(--card);
+}
+
+.lang-switcher.show .lang-list {
+    display: block;
+}
+
+/* hero */
+.hero {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 24px;
+}
+.hero-left { flex: 1 1 300px; }
+.hero-left h1 {
+    font-size: 36px;
+    margin: 0 0 12px;
+}
+.hero-left p { color: var(--muted); max-width: 60ch; }
+.hero-left .contact-info {
+    margin-top: 18px;
+    padding: 14px;
+    background: var(--card);
+    border-radius: var(--radius);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+}
+.hero-left .contact-info p { margin: 4px 0; }
+.hero-left .contact-info strong { color: var(--accent); }
+.hero-img {
+    flex: 1 1 20px;
+    max-height: 350px;
+    width: 100%;
+    object-fit: contain;
+    display: block;
+}
+
+/* section headings */
+h2 {
+    text-align: center;
+    color: var(--navy);
+    margin-bottom: 16px;
+    position: relative;
+}
+h2::after {
+    content: "";
+    display: block;
+    width: 50px;
+    height: 3px;
+    background: var(--accent);
+    margin: 8px auto 0 auto;
+    border-radius: 2px;
+}
+
+/* services */
+.services {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    margin: 40px 0;
+}
+.service-card {
+    background: var(--card);
+    border-radius: var(--radius);
+    padding: 20px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+.service-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+}
+.service-card h3 { margin-top: 0; color: var(--navy); }
+.service-card p { color: var(--muted); font-size: 14px; }
+
+/* customers */
+.customers {
+    margin: 50px 0;
+    text-align: center;
+}
+.customers p {
+    color: var(--muted);
+    max-width: 70ch;
+    margin: 0 auto 24px auto;
+}
+.customer-logos {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 20px;
+    align-items: center;
+    justify-items: center;
+}
+.customer-logos img {
+    max-width: 100%;
+    max-height: 80px;
+    object-fit: contain;
+    filter: grayscale(0.3);
+    transition: filter 0.3s ease;
+}
+.customer-logos img:hover { filter: grayscale(0); }
+
+/* about */
+.about {
+    margin: 40px 0;
+    padding: 28px;
+    background: var(--card);
+    border-radius: var(--radius);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
+}
+
+/* gallery */
+.gallery {
+    margin: 40px 0;
+}
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 12px;
+}
+.gallery-grid img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    border-radius: var(--radius);
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.05);
+}
+
+/* footer */
+footer {
+    margin-top: 40px;
+    padding: 18px 0;
+    border-top: 1px solid #e3e3e3;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    color: var(--muted);
+}
+footer a { color: var(--muted); text-decoration: none; }
+
+/* responsive */
+@media(max-width:900px) {
+    .hero { flex-direction: column; }
+    .hero-img { max-height: 220px; }
+}
+@media(max-width:600px) {
+    .gallery-grid { grid-template-columns: 1fr 1fr; }
+}
+</style>
+</head>
+
+<body>
+<div class="container">
+
+<!-- HEADER -->
+<header>
+    <div class="logo">
+        <img src="logo.jpeg" alt="Mese Lojistik Logo">
+    </div>
+    <nav>
+        <a href="#services">Hizmetler</a>
+        <!-- <a href="#customers">Müşterilerimiz</a> -->
+        <a href="#about">Hakkımızda</a>
+        <a href="#gallery">Galeri</a>
+
+        <!-- Language switcher -->
+        <div class="lang-switcher">
+            <button class="lang-btn">Dil ▼</button>
+            <ul class="lang-list">
+                <li data-link="index.html"><img src="https://flagcdn.com/w20/gb.png" alt="EN"> English</li>
+                <li data-link="index-tr.html"><img src="https://flagcdn.com/w20/tr.png" alt="TR"> Türkçe</li>
+                <li data-link="index-de.html"><img src="https://flagcdn.com/w20/de.png" alt="DE"> Deutsch</li>
+                <li data-link="index-nl.html"><img src="https://flagcdn.com/w20/nl.png" alt="NL"> Nederlands</li>
+                <li data-link="index-fr.html"><img src="https://flagcdn.com/w20/fr.png" alt="FR"> Français</li>
+            </ul>
+        </div>
+    </nav>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+    <div class="hero-left">
+        <h1>Mese Logistics – Sınırların Ötesine!</h1>
+        <p>
+            Mese Logistics, Türkiye ile Avrupa ülkeleri arasında komple ve parsiyel yük taşımacılığından depolama ve dağıtıma kadar, uçtan uca lojistik çözümler sunar.
+        </p>
+
+        <div class="contact-info">
+            <p><strong>Telefon:</strong> <a href="tel:+905377798615">+90 537 779 8615</a></p>
+            <p><strong>Email:</strong> <a href="mailto:mert@meselogistics.com">mert@meselogistics.com</a></p>
+            <p><strong>Adres:</strong> Küçükbakkalköy Mah. Gedikpaşa Sk. Sarıkaya İş Merkezi No:12, İç Kapı:13, Ataşehir / İstanbul</p>
+        </div>
+    </div>
+
+    <img class="hero-img" src="hero.png" alt="Kamyon ile yük teslimatı">
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+    <h2>Hizmetlerimiz</h2>
+    <div class="services">
+        <div class="service-card">
+            <h3>Karayolu Taşımacılığı</h3>
+            <p>Tüm Avrupa ülkeleri ile hızlı ve güvenli komple ve parsiyel yük taşımacılığı.</p>
+        </div>
+        <div class="service-card">
+            <h3>Depolama</h3>
+            <p>Güvenli depolama, stok yönetimi ve hızlı dağıtım çözümleri.</p>
+        </div>
+        <div class="service-card">
+            <h3>Lojistik Yönetimi</h3>
+            <p>Uluslararası lojistik, tedarik zinciri optimizasyonu ve proje bazlı taşımacılık.</p>
+        </div>
+    </div>
+</section>
+
+<!-- CUSTOMERS -->
+<!-- <section id="customers" class="customers">
+    <h2>Müşterilerimiz</h2>
+    <p>Çeşitli sektörlerden geniş bir müşteri yelpazesine hizmet vermekten gurur duyuyoruz ve her zaman güvenilir lojistik çözümleri sunuyoruz.</p>
+    <div class="customer-logos">
+        <img src="https://via.placeholder.com/150x80?text=Client+1" alt="Müşteri 1 Logo">
+        <img src="https://via.placeholder.com/150x80?text=Client+2" alt="Müşteri 2 Logo">
+        <img src="https://via.placeholder.com/150x80?text=Client+3" alt="Müşteri 3 Logo">
+        <img src="https://via.placeholder.com/150x80?text=Client+4" alt="Müşteri 4 Logo">
+        <img src="https://via.placeholder.com/150x80?text=Client+5" alt="Müşteri 5 Logo">
+    </div>
+</section> -->
+
+<!-- ABOUT -->
+<section id="about" class="about">
+    <h2>Hakkımızda</h2>
+    <p>
+        Mese Logistics olarak 15 yılı aşkın uzmanlığımızla Türkiye ile Avrupa’nın dört bir yanındaki müşterilerimize hızlı, güvenilir ve ihtiyaçlara özel karayolu taşımacılığı çözümleri sunuyoruz. Geniş lojistik ağımız ve farklı Avrupa ülkelerindeki iş ortaklarımız sayesinde yüklerinizi her zaman zamanında ve güvenle teslim ediyoruz. Günlük bilgi akışıyla şeffaf ve dürüst iletişimi önemsiyor, operasyonlarımızı sorunsuz yöneterek memnuniyetinizi en üst seviyeye taşıyoruz.
+    </p>
+    <p>
+        Avrupa hattında güçlü, hızlı ve güvenilir lojistik için doğru adres: Mese Logistics.
+    </p>
+</section>
+
+<!-- GALLERY -->
+<section id="gallery" class="gallery">
+    <h2>Galeri</h2>
+    <div class="gallery-grid">
+        <img src="tır.jpg" alt="">
+        <img src="photo1.jpg" alt="">
+        <img src="filo.jpg" alt="">
+        <img src="photo2.jpeg" alt="">
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+    <div>© Mese Lojistik — Tüm hakları saklıdır.</div>
+    <div style="display:flex; gap:14px;">
+        <a href="mailto:mert@meselogistics.com">Email</a>
+    </div>
+</footer>
+
+</div>
+
+<script>
+// Language switcher
+const langSwitcher = document.querySelector('.lang-switcher');
+const langBtn = document.querySelector('.lang-btn');
+const langItems = document.querySelectorAll('.lang-list li');
+
+langBtn.addEventListener('click', () => {
+    langSwitcher.classList.toggle('show');
+});
+
+langItems.forEach(item => {
+    item.addEventListener('click', () => {
+        window.location.href = item.getAttribute('data-link');
+    });
+});
+
+// Close dropdown if clicked outside
+document.addEventListener('click', (e) => {
+    if (!langSwitcher.contains(e.target)) {
+        langSwitcher.classList.remove('show');
+    }
+});
+</script>
+
+</body>
+</html>
