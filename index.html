@@ -267,13 +267,16 @@ footer a { color: var(--muted); text-decoration: none; }
 
         <!-- Language switcher -->
         <div class="lang-switcher">
-            <button class="lang-btn">Dil ▼</button>
+            <button class="lang-btn">
+                <img id="current-flag" src="https://flagcdn.com/w20/tr.png" alt="" />
+                <span id="current-lang">Türkçe</span> ▼
+            </button>
             <ul class="lang-list">
-                <li data-link="index.html"><img src="https://flagcdn.com/w20/gb.png" alt="EN"> English</li>
-                <li data-link="index-tr.html"><img src="https://flagcdn.com/w20/tr.png" alt="TR"> Türkçe</li>
-                <li data-link="index-de.html"><img src="https://flagcdn.com/w20/de.png" alt="DE"> Deutsch</li>
-                <li data-link="index-nl.html"><img src="https://flagcdn.com/w20/nl.png" alt="NL"> Nederlands</li>
-                <li data-link="index-fr.html"><img src="https://flagcdn.com/w20/fr.png" alt="FR"> Français</li>
+                <li data-lang="tr"><img src="https://flagcdn.com/w20/tr.png"> Türkçe</li>
+                <li data-lang="en"><img src="https://flagcdn.com/w20/gb.png"> English</li>
+                <li data-lang="de"><img src="https://flagcdn.com/w20/de.png"> Deutsch</li>
+                <li data-lang="nl"><img src="https://flagcdn.com/w20/nl.png" alt="NL"> Nederlands</li>
+                <li data-lang="fr"><img src="https://flagcdn.com/w20/fr.png" alt="FR"> Français</li>
             </ul>
         </div>
     </nav>
@@ -362,7 +365,7 @@ footer a { color: var(--muted); text-decoration: none; }
 </div>
 
 <script>
-// Language switcher
+// ------ DROPDOWN ------
 const langSwitcher = document.querySelector('.lang-switcher');
 const langBtn = document.querySelector('.lang-btn');
 const langItems = document.querySelectorAll('.lang-list li');
@@ -371,19 +374,193 @@ langBtn.addEventListener('click', () => {
     langSwitcher.classList.toggle('show');
 });
 
+document.addEventListener('click', (e) => {
+    if (!langSwitcher.contains(e.target)) langSwitcher.classList.remove('show');
+});
+
+// ---------- TRANSLATIONS ----------
+const translations = {
+
+    tr: {
+        heroTitle: "Mese Logistics – Sınırların Ötesine!",
+        heroText: "Mese Logistics, Türkiye ile Avrupa ülkeleri arasında komple ve parsiyel yük taşımacılığından depolama ve dağıtıma kadar, uçtan uca lojistik çözümler sunar.",
+        phone: "Telefon:",
+        email: "Email:",
+        address: "Adres:",
+        services: "Hizmetlerimiz",
+        s1Title: "Karayolu Taşımacılığı",
+        s1Text: "Tüm Avrupa ülkeleri ile hızlı ve güvenli komple ve parsiyel yük taşımacılığı.",
+        s2Title: "Depolama",
+        s2Text: "Güvenli depolama, stok yönetimi ve hızlı dağıtım çözümleri.",
+        s3Title: "Lojistik Yönetimi",
+        s3Text: "Uluslararası lojistik, tedarik zinciri optimizasyonu ve proje bazlı taşımacılık.",
+        about: "Hakkımızda",
+        gallery: "Galeri",
+        aboutText1: "Mese Logistics olarak 15 yılı aşkın uzmanlığımızla Türkiye ile Avrupa’nın dört bir yanındaki müşterilerimize hızlı, güvenilir ve ihtiyaçlara özel karayolu taşımacılığı çözümleri sunuyoruz.",
+        aboutText2: "Avrupa hattında güçlü, hızlı ve güvenilir lojistik için doğru adres: Mese Logistics.",
+        footer: "© Mese Logistics — Tüm hakları saklıdır.",
+        langName: "Türkçe",
+        flag: "https://flagcdn.com/w20/tr.png"
+    },
+
+    en: {
+        heroTitle: "Mese Logistics – Beyond Borders!",
+        heroText: "Mese Logistics provides end-to-end logistics solutions from complete and partial transportation between Turkey and Europe to warehousing and distribution.",
+        phone: "Phone:",
+        email: "Email:",
+        address: "Address:",
+        services: "Our Services",
+        s1Title: "Road Transport",
+        s1Text: "Fast and secure full and partial road transportation across all European countries.",
+        s2Title: "Warehousing",
+        s2Text: "Secure warehousing, stock management and fast distribution solutions.",
+        s3Title: "Logistics Management",
+        s3Text: "International logistics, supply chain optimization and project transportation.",
+        about: "About Us",
+        gallery: "Gallery",
+        aboutText1: "With over 15 years of expertise, Mese Logistics offers fast, reliable, and tailored road transport solutions between Turkey and Europe.",
+        aboutText2: "The right address for strong, fast and reliable European logistics: Mese Logistics.",
+        footer: "© Mese Logistics — All rights reserved.",
+        langName: "English",
+        flag: "https://flagcdn.com/w20/gb.png"
+    },
+
+    de: {
+        heroTitle: "Mese Logistics – Über die Grenzen hinaus!",
+        heroText: "Mese Logistics bietet End-to-End-Logistiklösungen vom Komplett- und Teilladungstransport zwischen der Türkei und Europa bis hin zur Lagerung und Distribution.",
+        phone: "Telefon:",
+        email: "Email:",
+        address: "Adresse:",
+        services: "Unsere Dienstleistungen",
+        s1Title: "Straßentransport",
+        s1Text: "Schneller und sicherer Komplett- und Teilladungstransport in alle europäischen Länder.",
+        s2Title: "Lagerung",
+        s2Text: "Sichere Lagerung, Bestandsmanagement und schnelle Distribution.",
+        s3Title: "Logistikmanagement",
+        s3Text: "Internationale Logistik, Optimierung der Lieferkette und Projekttransporte.",
+        about: "Über uns",
+        gallery: "Galerie",
+        aboutText1: "Mit über 15 Jahren Erfahrung bietet Mese Logistics schnelle, zuverlässige und maßgeschneiderte Straßentransportlösungen zwischen der Türkei und Europa.",
+        aboutText2: "Die richtige Adresse für starke, schnelle und zuverlässige Europalogistik: Mese Logistics.",
+        footer: "© Mese Logistics — Alle Rechte vorbehalten.",
+        langName: "Deutsch",
+        flag: "https://flagcdn.com/w20/de.png"
+    },
+
+    fr: {
+        heroTitle: "Mese Logistics – Au-delà des frontières !",
+        heroText: "Mese Logistics propose des solutions logistiques complètes : transport complet et partiel entre la Turquie et l’Europe, stockage et distribution.",
+        phone: "Téléphone :",
+        email: "Email :",
+        address: "Adresse :",
+        services: "Nos Services",
+        s1Title: "Transport Routier",
+        s1Text: "Transport routier complet et partiel rapide et sécurisé vers tous les pays européens.",
+        s2Title: "Stockage",
+        s2Text: "Solutions de stockage sécurisé, gestion des stocks et distribution rapide.",
+        s3Title: "Gestion Logistique",
+        s3Text: "Logistique internationale, optimisation de la chaîne d’approvisionnement et transport de projets.",
+        about: "À propos de nous",
+        gallery: "Galerie",
+        aboutText1: "Avec plus de 15 ans d’expérience, Mese Logistics offre des solutions de transport routier rapides, fiables et adaptées entre la Turquie et l’Europe.",
+        aboutText2: "Votre partenaire fiable pour une logistique européenne solide, rapide et sécurisée : Mese Logistics.",
+        footer: "© Mese Logistics — Tous droits réservés.",
+        langName: "Français",
+        flag: "https://flagcdn.com/w20/fr.png"
+    },
+    
+    nl: {
+        heroTitle: "Mese Logistics – Verder dan grenzen!",
+        heroText: "Mese Logistics biedt end-to-end logistieke oplossingen: compleet en deelladingstransport tussen Turkije en Europa, opslag en distributie.",
+        phone: "Telefoon:",
+        email: "Email:",
+        address: "Adres:",
+        services: "Onze Diensten",
+        s1Title: "Wegtransport",
+        s1Text: "Snel en veilig volledig en gedeeltelijk wegtransport naar alle Europese landen.",
+        s2Title: "Opslag",
+        s2Text: "Veilige opslag, voorraadbeheer en snelle distributieoplossingen.",
+        s3Title: "Logistiek Management",
+        s3Text: "Internationale logistiek, supply-chain-optimalisatie en projecttransport.",
+        about: "Over Ons",
+        gallery: "Galerij",
+        aboutText1: "Met meer dan 15 jaar ervaring biedt Mese Logistics snelle, betrouwbare en op maat gemaakte wegtransportoplossingen tussen Turkije en Europa.",
+        aboutText2: "Het juiste adres voor sterke, snelle en betrouwbare Europese logistiek: Mese Logistics.",
+        footer: "© Mese Logistics — Alle rechten voorbehouden.",
+        langName: "Nederlands",
+        flag: "https://flagcdn.com/w20/nl.png"
+    }
+
+};
+
+
+// ---- APPLY LANGUAGE ----
+function applyLang(lang) {
+    const t = translations[lang];
+
+    // Navigation
+    document.querySelector('a[href="#services"]').textContent = t.services;
+    document.querySelector('a[href="#about"]').textContent = t.about;
+    document.querySelector('a[href="#gallery"]').textContent = t.gallery;
+
+    // Hero
+    document.querySelector('.hero-left h1').textContent = t.heroTitle;
+    document.querySelector('.hero-left p').textContent = t.heroText;
+
+    // Contact labels
+    document.querySelectorAll('.contact-info strong')[0].textContent = t.phone;
+    document.querySelectorAll('.contact-info strong')[1].textContent = t.email;
+    document.querySelectorAll('.contact-info strong')[2].textContent = t.address;
+
+    // Services
+    document.querySelector('#services h2').textContent = t.services;
+
+    const cards = document.querySelectorAll('.service-card');
+    cards[0].querySelector('h3').textContent = t.s1Title;
+    cards[0].querySelector('p').textContent = t.s1Text;
+    cards[1].querySelector('h3').textContent = t.s2Title;
+    cards[1].querySelector('p').textContent = t.s2Text;
+    cards[2].querySelector('h3').textContent = t.s3Title;
+    cards[2].querySelector('p').textContent = t.s3Text;
+
+    // About
+    document.querySelector('#about h2').textContent = t.about;
+    document.querySelectorAll('#about p')[0].textContent = t.aboutText1;
+    document.querySelectorAll('#about p')[1].textContent = t.aboutText2;
+
+    // Footer
+    document.querySelector('footer div').textContent = t.footer;
+
+    // Button
+    document.getElementById("current-lang").textContent = t.langName;
+    document.getElementById("current-flag").src = t.flag;
+
+    // Save preference
+    localStorage.setItem("lang", lang);
+}
+
+// ---- LANGUAGE SELECTION ----
 langItems.forEach(item => {
     item.addEventListener('click', () => {
-        window.location.href = item.getAttribute('data-link');
+        const lang = item.dataset.lang;
+        applyLang(lang);
+        langSwitcher.classList.remove('show');
     });
 });
 
-// Close dropdown if clicked outside
-document.addEventListener('click', (e) => {
-    if (!langSwitcher.contains(e.target)) {
-        langSwitcher.classList.remove('show');
-    }
-});
+// ---- INITIAL LOAD ----
+let userLang = localStorage.getItem("lang");
+
+// Tarayıcı dil algılama
+if (!userLang) {
+    const browser = navigator.language.slice(0,2);
+    userLang = ["tr","en","de"].includes(browser) ? browser : "tr";
+}
+
+applyLang(userLang);
+
 </script>
+
 
 </body>
 </html>
